@@ -30,7 +30,7 @@ Node* newNode(int value, Node* left, Node* right){
     return newNode;
 }
 
-int	depth(Node* root, Node* node){
+int depth(Node* root, Node* node){
     /* check if it's working */
     int counter = 0;
     if(root==NULL) return 0;
@@ -87,7 +87,7 @@ int isEmpty(Node* node){
 
 int isFull(Node* node){
     if(node==NULL) return 1;
-    
+
     if(node->left==NULL && node->right==NULL) return 1; // is leaf
 
     if(node->left!=NULL && node->right!=NULL) return isFull(node->left) && isFull(node->right);
@@ -127,11 +127,29 @@ Node* parent(Node* node, Node* root){
     return NULL;
 }
 Node* rotateLeft(Node* node){
-    /* soon */
+    if(node->right==NULL){
+        printf("The node does not have right child!\n");
+        return node;
+    }
+    Node* pivot = right(node);
+    Node* subtree = pivot->left;
+    pivot->left = node;
+    node->right = subtree;
+
+    return pivot;
 }
 
 Node* rotateRight(Node* node){
-    /* soon */
+    if(node->left==NULL){
+        printf("The node does not have left child!\n");
+        return node;
+    }
+    Node* pivot = left(node);
+    Node* subtree = pivot->right;
+    pivot->right = node;
+    node->left = subtree;
+
+    return pivot;
 }
 
 Node* setLeft(Node* node, Node* left){
