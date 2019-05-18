@@ -2,6 +2,7 @@
 
 int main(int argc, char const *argv[])
 {
+    /* tesing */
     Node* root = newNode(0, NULL, NULL);
     Node* node1 = newNode(1, NULL, NULL);
     Node* node2 = newNode(2, NULL, NULL);
@@ -16,9 +17,8 @@ int main(int argc, char const *argv[])
     Node* node9 = newNode(9, NULL, NULL);
     node2 = setRight(node2, newNode(5, NULL, newNode(8, NULL, node9)));
 
-    printNode(root);
-    printf("%d\n", depth(root, node9));
-
+    printNode(parent(node9, root));
+    printNode(parent(root, root));
     return 0;
 }
 
@@ -47,12 +47,34 @@ int	depth(Node* root, Node* node){
     return counter;
 }
 
-int	height(Node* node){
-    /* soon */
+int	maxHeight(Node* node){
+    if(node==NULL) return 0;
+    else{
+        int righDepth = maxHeight(node->right);
+        int leftDepth = maxHeight(node->left);
+        if(righDepth > leftDepth) return righDepth+1;
+        else return leftDepth+1;
+    }
+}
+
+int	minHeight(Node* node){
+    if(node==NULL) return 0;
+    else{
+        int righDepth = minHeight(node->right);
+        int leftDepth = minHeight(node->left);
+        if(righDepth < leftDepth) return righDepth+1;
+        else return leftDepth+1;
+    }
 }
 
 int	isBalanced(Node* node){
-    /* soon */
+    if (node == NULL) 
+        return 1; 
+
+    if(abs(maxHeight(node->left) - maxHeight(node->right)) <= 1)
+        if(isBalanced(node->left) && isBalanced(node->right))
+            return 1;
+    return 0;
 }
 
 int isComplete(Node* node){
@@ -64,12 +86,52 @@ int isEmpty(Node* node){
 }
 
 int isFull(Node* node){
+    if(node==NULL) return 1;
+    
+    if(node->left==NULL && node->right==NULL) return 1; // is leaf
+
+    if(node->left!=NULL && node->right!=NULL) return isFull(node->left) && isFull(node->right);
+
+    return 0;
+}
+
+int	isLeftChild(Node* node, Node* root){
+    Node* parentNode = parent(node, root);
+    return parentNode->left==node;
+}
+
+int isRightChild(Node* node, Node* root){
+    Node* parentNode = parent(node, root);
+    return parentNode->right==node;
+}
+
+Node* left(Node* node){
+    return node->left;
+}
+
+Node* right(Node* node){
+    return node->right;
+}
+
+Node* parent(Node* node, Node* root){
+    if(root==node || root==NULL || node==NULL) return NULL;
+
+    if(root->left == node || root->right == node) return root;
+
+    Node* possibleParent = parent(node, root->left);
+    if(possibleParent != NULL) return possibleParent;
+
+    possibleParent = parent(node, root->right);
+    if(possibleParent != NULL) return possibleParent;
+
+    return NULL;
+}
+Node* rotateLeft(Node* node){
     /* soon */
 }
 
-Node* setRight(Node* node, Node* right){
-    node->right = right;
-    return node;
+Node* rotateRight(Node* node){
+    /* soon */
 }
 
 Node* setLeft(Node* node, Node* left){
@@ -77,9 +139,26 @@ Node* setLeft(Node* node, Node* left){
     return node;
 }
 
+Node* setRight(Node* node, Node* right){
+    node->right = right;
+    return node;
+}
+
+Node* setValue(Node* node, int value){
+    node->value = value;
+    return node;
+}
+
+int	size(Node* root){
+    if (root == NULL) 
+        return 0; 
+    return 1 + size(root->left) + size(root->right); 
+}
+
 void printNode(Node* node){
     if(node==NULL){
-        printf("Node is NULL");
+        printf("Node is NULL!\n");
+        return;
     }
     printf(" \t\tValue \tAddress\n");
     printf("Node: \t\t%d \t%p\n", node->value, node);
@@ -88,4 +167,8 @@ void printNode(Node* node){
     if(node->right!=NULL)    
         printf("R-Child: \t%d \t%p\n", node->right->value, node->right);
     printf("\n");
+}
+
+void printSubTree(Node* node){
+    /* soon */
 }

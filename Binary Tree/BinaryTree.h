@@ -13,8 +13,11 @@ Node* newNode(int value, Node* left, Node* right);
 /*  Compute the depth of a node. */
 int	depth(Node* root, Node* node);
 
-/*  Returns height of node in tree. */
-int	height(Node* node);
+/*  Returns max height of node in tree. */
+int	maxHeight(Node* node);
+
+/*  Returns min height of node in tree. */
+int	minHeight(Node* node);
 
 /*  Return 1 iff (if and only if) the tree is height balanced, 0 otherwise. */
 int	isBalanced(Node* node); 
@@ -29,10 +32,10 @@ int isEmpty(Node* node);
 int isFull(Node* node); 
 
 /*  Determine if this node is a left child. */
-int	isLeftChild(Node* node);
+int	isLeftChild(Node* node, Node* root);
 
 /*  Determine if this node is a right child. */      
-int isRightChild(Node* node);
+int isRightChild(Node* node, Node* root);
 
 /*  Get left subtree of current node. */
 Node* left(Node* node);
@@ -41,10 +44,7 @@ Node* left(Node* node);
 Node* right(Node* node);
 
 /*  Get the parent of this node. */
-Node* parent(Node* node);
-
-/*  Returns the root of tree. */
-Node* getRoot(Node* node);
+Node* parent(Node* node, Node* root);
 
 /*  Left rotation of tree about this node.
     Node must have a right child. */
@@ -71,6 +71,3 @@ void printNode(Node* node);
 
 /*  Prints a representation of the subtree rooted at this node. */
 void printSubTree(Node* node);
-
-/*  Prints a representation of the tree. */
-void printTree();
