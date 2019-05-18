@@ -47,7 +47,7 @@ int depth(Node* root, Node* node){
     return counter;
 }
 
-int	maxHeight(Node* node){
+int maxHeight(Node* node){
     if(node==NULL) return 0;
     else{
         int righDepth = maxHeight(node->right);
@@ -57,7 +57,7 @@ int	maxHeight(Node* node){
     }
 }
 
-int	minHeight(Node* node){
+int minHeight(Node* node){
     if(node==NULL) return 0;
     else{
         int righDepth = minHeight(node->right);
@@ -67,7 +67,7 @@ int	minHeight(Node* node){
     }
 }
 
-int	isBalanced(Node* node){
+int isBalanced(Node* node){
     if (node == NULL) 
         return 1; 
 
@@ -95,7 +95,7 @@ int isFull(Node* node){
     return 0;
 }
 
-int	isLeftChild(Node* node, Node* root){
+int isLeftChild(Node* node, Node* root){
     Node* parentNode = parent(node, root);
     return parentNode->left==node;
 }

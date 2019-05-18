@@ -11,16 +11,16 @@ typedef struct Node{
 Node* newNode(int value, Node* left, Node* right);
 
 /*  Compute the depth of a node. */
-int	depth(Node* root, Node* node);
+int depth(Node* root, Node* node);
 
 /*  Returns max height of node in tree. */
-int	maxHeight(Node* node);
+int maxHeight(Node* node);
 
 /*  Returns min height of node in tree. */
-int	minHeight(Node* node);
+int minHeight(Node* node);
 
 /*  Return 1 iff (if and only if) the tree is height balanced, 0 otherwise. */
-int	isBalanced(Node* node); 
+int isBalanced(Node* node); 
 
 /*  Return 1 if tree is complete, 0 otherwise. */
 int isComplete(Node* node); 
@@ -32,7 +32,7 @@ int isEmpty(Node* node);
 int isFull(Node* node); 
 
 /*  Determine if this node is a left child. */
-int	isLeftChild(Node* node, Node* root);
+int isLeftChild(Node* node, Node* root);
 
 /*  Determine if this node is a right child. */      
 int isRightChild(Node* node, Node* root);
@@ -64,7 +64,7 @@ Node* setRight(Node* node, Node* right);
 Node* setValue(Node* node, int value);
 
 /*  Returns the number of descendants of node. */
-int	size(Node* node);
+int size(Node* node);
 
 /*  Prints a representation of the node. */
 void printNode(Node* node);
