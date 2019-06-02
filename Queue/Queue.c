@@ -2,18 +2,6 @@
 
 int main(int argc, char const *argv[]){
     struct Queue q = newQueue();
-    q = enqueue(q, 1);
-    q = enqueue(q, 2);
-    q = enqueue(q, 3);
-    q = enqueue(q, 4);
-    q = enqueue(q, 5);
-    q = enqueue(q, 6);
-    printQueue(q);
-    q = dequeue(q);
-    printQueue(q);
-    printf("Peek: %d\n", peek(q));
-    printf("Get index %d: %d\n", 4, get(q, 4));
-    return 0;
 }
 
 struct Queue newQueue(){
